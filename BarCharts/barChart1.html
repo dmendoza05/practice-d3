@@ -6,12 +6,21 @@
 </head>
 <body>
   <script type="text/javascript">
-    var random = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    var random = [20, 40, 50, 60]
 
     var width = 600,
         height = 400;
 
-    var chart = d3.select('body').append('svg')
+    var barHeight = d3.scale.linear()
+        .domain([0, 60])
+        .range([0, width]);
+
+    var barColor = d3.scale.linear()
+        .domain([0, 60])
+        .range(['green', '#993'])
+
+    var chart = d3.select('body')
+        .append('svg')
         .attr('width', width)
         .attr('height', height)
         .style('background-color', '#000');
@@ -20,10 +29,10 @@
         .data(random)
         .enter()
             .append('rect')
-            .attr('fill', '#fff')
-            .attr('width', 10)
-            .attr('height', function(d){ return d * 10})
-            .attr('x', function(d, i){ return d * 30})
+            .attr('fill', function(d){ return barColor(d)})
+            .attr('width', function(d){ return barHeight(d) })
+            .attr('height', 50)
+            .attr('y', function(d, i){ return i * 100})
 
   </script>
 </body>
