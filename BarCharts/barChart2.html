@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Bar Chart 2</title>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <style type="text/css">
+  .bar {
+    fill: steelblue;
+  }
+
+  .bar:hover {
+    fill: brown;
+  }
+
+  .axis {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+
+  </style>
+  <script type="text/javascript">
+
+    var margin = {top: 20, right: 20, bottom: 30, left: 40},   // margin object
+        width = 960 - margin.left - margin.right,         
+        height = 500 - margin.top - margin.bottom;          
+
+        //ordinal scales are for words or 
+    var x = d3.scale.ordinal()
+        //.rangeRoundBands([ size ], padding for each element inside, padding outside)
+        .rangeRoundBands([0, width - margin.right], .1);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)                 // calling the x scale
+        .orient("bottom");        // the positioning/orientation of the axis
+
+    var yAxis = d3.svg.axis()     
+        .scale(y)                 // calling y scale
+        .orient("left")           // the position/orientation of the axis
+    
+    var chart = d3.select("body").append("svg")
+        .style("background-color", "#666  ")
+        .attr("width", width + margin.left + margin.right)              // the width of the overall svg frame
+        .attr("height", height + margin.top + margin.bottom)            // the height of the overall svg frame
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    function render(data){
+      console.log(data[0].amount);
+
+      // x & y domain
+      x.domain( data.map( function(d){ return d.year}));                // x domain. using the data map function it ss
+      y.domain([0, d3.max(data, function(d){ return d.amount})]);       // y domain. uses the d3 max function to get the max value 
+
+      chart.append("g") 
+        .attr("class", "x axis")                                        // adding a class "x axis"
+        .attr("transform", "translate(0," + height + ")")               // moving/translating it 500px down
+        .call(xAxis);                                                   // calling xAxis 
+
+
+      chart.append("g")
+        .attr("class", "y axis")                                        // adding a class "y axis"
+        .attr("transform", "translate(0, 0)")                           // moving/translating it 500px down
+        .call(yAxis);                                                   // calling yAxis 
+
+      chart.selectAll(".bar")                                           // binding data to all rect that has a class "bar"
+        .data(data)                                                     // calling the cata
+      .enter().append("rect")                                           // adding a class "bar"
+        .attr("class", "bar")                                           // 
+        .attr("x", function(d) { return x(d.year); })
+        .attr("width", x.rangeBand())
+        .attr("y", function(d) { return y(d.amount); })
+        .attr("height", function(d) { return height - y(d.amount); });
+    }
+
+    d3.json("sampleData.json", render)
+  </script>
+</body>
+</html>
