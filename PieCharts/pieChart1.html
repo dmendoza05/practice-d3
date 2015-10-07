@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Pie Chart 1 </title>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    var dat = [50, 10, 20],
+        r = 200;
+
+    var margin = {top: 20, right: 20, bottom: 30, left: 40},   // margin object
+        width = 960 - margin.left - margin.right,         
+        height = 500 - margin.top - margin.bottom;          
+
+    var chart = d3.select("body").append("svg")
+        .style("background-color", "#666  ")
+        .attr("width", width + margin.left + margin.right)              // the width of the overall svg frame
+        .attr("height", height + margin.top + margin.bottom)            // the height of the overall svg frame
+
+    var group = chart.append("g")
+        .attr("transform", "translate(400, 260)");
+
+    function render(data){
+        console.log(data)
+        var arc = d3.svg.arc()
+            .outerRadius(r);
+
+        var pie = d3.layout.pie()
+            .value(function(d) {return d.amount});
+
+        var arcs = group.selectAll(".arc")
+            .data(pie(data))
+            .enter()
+            .append("g")
+            .attr("class", "arc");
+            
+        arcs.append("path")
+            .attr("d", arc)
+            .attr("fill", function(d){return d.data.color})
+    }
+
+    d3.json("sampleData.json", render);
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "year" : 1991,
+    "amount" : 2,
+    "color" : "red"
+  },
+  {
+    "year" : 1992,
+    "amount" : 4,
+    "color" : "blue"
+  },
+  {
+    "year" : 1993,
+    "amount" : 5,
+    "color" : "yellow"
+  },
+  {
+    "year" : 1994,
+    "amount" : 9,
+    "color" : "skyblue"
+  },
+  {
+    "year" : 1995,
+    "amount" : 12,
+    "color" : "green"
+  },
+  {
+    "year" : 1996,
+    "amount" : 10,
+    "color" : "white"
+  },
+  {
+    "year" : 1997,
+    "amount" : 13,
+    "color" : "orange"
+  },
+  {
+    "year" : 1998,
+    "amount" : 18,
+    "color" : "violet"
+  },
+  {
+    "year" : 1999,
+    "amount" : 25,
+    "color" : "brown"
+  },
+  {
+    "year" : 2000,
+    "amount" : 27,
+    "color" : "gold"
+  },
+  {
+    "year" : 2001,
+    "amount" : 22,
+    "color" : "silver"
+  },
+  {
+    "year" : 2002,
+    "amount" : 18,
+    "color" : "pink"
+  },
+  {
+    "year" : 2003,
+    "amount" : 13,
+    "color" : "navy"
+  },
+  {
+    "year" : 2004,
+    "amount" : 20,
+    "color" : "yellowgreen"
+  },
+  {
+    "year" : 2005,
+    "amount" : 12,
+    "color" : "peachpuff"
+  },
+  {
+    "year" : 2006,
+    "amount" : 11,
+    "color" : "gray"
+  }
+]
